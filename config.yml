@@ -1,0 +1,16 @@
+server:
+  port: "8080"
+
+logging:
+  level: "info"
+  format: "json"
+
+auth-provider:
+  google:
+    client-id: your-client-id
+    client-secret: your-client-secret
+    redirect-uri: "http://localhost:8080/auth/google/callback"
+    scopes:
+      - "openid"
+      - "email"
+      - "profile"

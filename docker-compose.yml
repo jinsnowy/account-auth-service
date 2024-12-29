@@ -1,0 +1,35 @@
+services:
+    account-auth-service:
+        image: yhjin210/account-auth-service
+        restart: always
+        ports:
+            - "8080:8080"
+        environment:
+            SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/accountdb
+            SPRING_DATASOURCE_USERNAME: yhjin210
+            SPRING_DATASOURCE_PASSWORD_FILE: /run/secrets/postgres_password
+        secrets:
+            - postgres_password
+        depends_on:
+            - db
+    db:
+        image: postgres
+        restart: always
+        shm_size: 128mb
+        environment:
+            POSTGRES_USER: yhjin210
+            POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+            POSTGRES_DB: accountdb
+        secrets:
+            - postgres_password
+        ports:
+            - "5432:5432"
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+           - "8123:8080"
+
+secrets:
+    postgres_password:
+        file: ./secrets/postgres_password
