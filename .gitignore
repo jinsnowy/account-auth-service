@@ -1,0 +1,3 @@
+config.prod.yml
+*.exe
+go.sum
