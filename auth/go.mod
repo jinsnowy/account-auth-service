@@ -1,4 +1,4 @@
-module github/com/jinsnowy/account-auth-service/module/auth
+module github.com/jinsnowy/account-auth-service/auth
 
 go 1.23.4
 
